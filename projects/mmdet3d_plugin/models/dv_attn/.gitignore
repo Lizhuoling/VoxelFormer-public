@@ -1,0 +1,9 @@
+.vscode
+.idea
+*.so
+*.o
+*pyc
+_ext
+build
+voxel_attn.egg-info
+dist
