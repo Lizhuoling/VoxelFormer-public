@@ -246,7 +246,6 @@ class VoxelFormerHead(DETRHead):
             outputs_class = self.cls_branches[lvl](hs[lvl])
             tmp = self.reg_branches[lvl](hs[lvl])
 
-            # TODO: check the shape of reference
             assert reference.shape[-1] == 3
             tmp[..., 0:2] += reference[..., 0:2]
             tmp[..., 0:2] = tmp[..., 0:2].sigmoid()
@@ -256,7 +255,6 @@ class VoxelFormerHead(DETRHead):
             if self.with_time:
                 tmp[..., 8:] = tmp[..., 8:] / mean_time_stamp[:, None, None]
 
-            # TODO: check if using sigmoid
             outputs_coord = tmp
             outputs_classes.append(outputs_class)
             outputs_coords.append(outputs_coord)
@@ -596,13 +594,6 @@ class VoxelFormerHead(DETRHead):
         """
         B, N, H, W = gt_depths.shape
 
-        '''from torchvision import transforms
-        for i in range(gt_depths.shape[1]):
-            vis_depth = gt_depths.clone().cpu()[0][i] # clone the tensor
-            vis_depth = transforms.ToPILImage()(vis_depth)
-            vis_depth.save('vis_depth_feature.jpg')
-            pdb.set_trace()'''
-        
         gt_depths = gt_depths.view(
             B * N,
             H // self.downsample_factor,
@@ -621,8 +612,7 @@ class VoxelFormerHead(DETRHead):
         gt_depths = gt_depths.view(B * N, H // self.downsample_factor,
                                    W // self.downsample_factor)
 
-        gt_depths = (gt_depths -
-                     (self.d_bound[0] - self.d_bound[2])) / self.d_bound[2]
+        gt_depths = (gt_depths - (self.d_bound[0] - self.d_bound[2])) / self.d_bound[2]
         gt_depths = torch.where(
             (gt_depths < self.depth_channels + 1) & (gt_depths >= 0.0),
             gt_depths, torch.zeros_like(gt_depths))
