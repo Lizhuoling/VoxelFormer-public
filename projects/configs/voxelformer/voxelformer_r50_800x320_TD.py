@@ -297,24 +297,24 @@ find_unused_parameters=False #### when use checkpoint, find_unused_parameters mu
 checkpoint_config = dict(interval=24, max_keep_ckpts=3)
 runner = dict(type='EpochBasedRunner', max_epochs=total_epochs)
 
-# mAP: 0.2573
-# mATE: 0.8643
-# mASE: 0.2893
-# mAOE: 0.6559
-# mAVE: 0.5274
-# mAAE: 0.2113
-# NDS: 0.3738
-# Eval time: 133.5s
+# mAP: 0.2620
+# mATE: 0.8719
+# mASE: 0.2899
+# mAOE: 0.6496
+# mAVE: 0.5431
+# mAAE: 0.2072
+# NDS: 0.3748
+# Eval time: 186.4s
 
 # Per-class results:
 # Object Class    AP      ATE     ASE     AOE     AVE     AAE
-# car     0.408   0.686   0.164   0.124   0.503   0.215
-# truck   0.195   0.877   0.245   0.207   0.412   0.215
-# bus     0.232   0.900   0.233   0.143   1.239   0.318
-# trailer 0.051   1.182   0.273   0.609   0.320   0.056
-# construction_vehicle    0.040   1.146   0.509   1.524   0.151   0.386
-# pedestrian      0.335   0.804   0.304   0.834   0.620   0.257
-# motorcycle      0.243   0.811   0.263   0.882   0.701   0.222
-# bicycle 0.266   0.685   0.285   1.425   0.273   0.022
-# traffic_cone    0.425   0.670   0.334   nan     nan     nan
-# barrier 0.378   0.883   0.283   0.156   nan     nan
+# car     0.407   0.693   0.164   0.121   0.500   0.215
+# truck   0.203   0.872   0.240   0.203   0.405   0.216
+# bus     0.243   0.984   0.223   0.104   1.220   0.336
+# trailer 0.055   1.198   0.281   0.771   0.276   0.045
+# construction_vehicle    0.049   1.103   0.518   1.467   0.124   0.365
+# pedestrian      0.342   0.796   0.300   0.799   0.605   0.237
+# motorcycle      0.246   0.875   0.265   0.821   0.879   0.189
+# bicycle 0.260   0.686   0.286   1.402   0.336   0.054
+# traffic_cone    0.449   0.628   0.332   nan     nan     nan
+# barrier 0.365   0.884   0.289   0.159   nan     nan

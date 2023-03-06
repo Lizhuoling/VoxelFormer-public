@@ -275,7 +275,7 @@ optimizer = dict(
         }),
     weight_decay=1e-5)
 
-optimizer_config = dict(type='Fp16OptimizerHook', loss_scale=512., grad_clip=dict(max_norm=35, norm_type=2))
+optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 
 # learning policy
 lr_config = dict(
@@ -292,3 +292,24 @@ checkpoint_config = dict(interval=24, max_keep_ckpts=3)
 runner = dict(type='EpochBasedRunner', max_epochs=total_epochs)
 load_from ='ckpts/fcos3d_vovnet_imgbackbone-remapped.pth'
 
+# mAP: 0.4245
+# mATE: 0.6666
+# mASE: 0.2721
+# mAOE: 0.3839
+# mAVE: 0.3660
+# mAAE: 0.1881
+# NDS: 0.5246
+# Eval time: 162.2s
+
+# Per-class results:
+# Object Class    AP      ATE     ASE     AOE     AVE     AAE
+# car     0.626   0.434   0.148   0.066   0.328   0.197
+# truck   0.388   0.671   0.214   0.083   0.313   0.198
+# bus     0.445   0.762   0.221   0.069   0.674   0.238
+# trailer 0.224   1.021   0.238   0.530   0.320   0.142
+# construction_vehicle    0.121   1.038   0.500   1.040   0.150   0.339
+# pedestrian      0.515   0.626   0.289   0.473   0.390   0.166
+# motorcycle      0.402   0.645   0.256   0.462   0.539   0.211
+# bicycle 0.417   0.540   0.251   0.599   0.213   0.014
+# traffic_cone    0.578   0.465   0.310   nan     nan     nan
+# barrier 0.529   0.465   0.294   0.133   nan     nan

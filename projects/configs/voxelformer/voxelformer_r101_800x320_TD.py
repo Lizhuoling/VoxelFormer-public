@@ -296,3 +296,24 @@ checkpoint_config = dict(interval=24, max_keep_ckpts=3)
 runner = dict(type='EpochBasedRunner', max_epochs=total_epochs)
 load_from = 'ckpts/r101_dcn_fcos3d_pretrain.pth'
 
+# mAP: 0.3446
+# mATE: 0.7426
+# mASE: 0.2762
+# mAOE: 0.4276
+# mAVE: 0.4529
+# mAAE: 0.2017
+# NDS: 0.4622
+# Eval time: 404.1s
+
+# Per-class results:
+# Object Class    AP      ATE     ASE     AOE     AVE     AAE
+# car     0.523   0.548   0.154   0.081   0.449   0.201
+# truck   0.314   0.766   0.223   0.109   0.417   0.194
+# bus     0.318   0.791   0.200   0.098   0.914   0.275
+# trailer 0.144   1.106   0.246   0.490   0.321   0.179
+# construction_vehicle    0.083   1.076   0.482   1.051   0.115   0.342
+# pedestrian      0.418   0.712   0.296   0.572   0.466   0.183   
+# motorcycle      0.329   0.674   0.265   0.596   0.649   0.201   
+# bicycle 0.321   0.631   0.279   0.719   0.292   0.039
+# traffic_cone    0.521   0.540   0.327   nan     nan     nan
+# barrier 0.475   0.583   0.290   0.131   nan     nan
