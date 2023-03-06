@@ -1,5 +1,7 @@
 # VoxelFormer
 
+## Install
+
 **a. Create a conda virtual environment and activate it.**
 ```shell
 conda create --name VoxelFormer -y python=3.8
@@ -50,4 +52,52 @@ pip install -r requirements.txt
 **h. Prepare pretrained models.**
 ```shell
 mkdir ckpts
+```
+
+## Nuscenes
+Download nuScenes V1.0 full dataset data[HERE](https://www.nuscenes.org/download). Prepare nuscenes data by running
+
+**Prepare nuScenes data**
+
+```
+python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./data/nuscenes --extra-tag voxel_nuscenes
+```
+Using the above code will generate `voxel_nuscenes_infos_{train,val}.pkl`.
+
+```
+python tools/voxel_generate_sweep_pkl.py --split train
+python tools/voxel_generate_sweep_pkl.py --split val
+# python tools/voxel_generate_sweep_pkl.py --split test
+```
+Using the above code will generate `voxel_nuscenes_temporal_infos_{train,val}.pkl`.
+
+(optional)
+```
+python tools/voxel_generate_demo_pkl.py --split train
+python tools/voxel_generate_demo_pkl.py --split val
+# python tools/voxel_generate_demo_pkl.py --split test
+```
+Using the above code will generate `voxel_nuscenes_temporal_infos_{train,val}_demo.pkl`.
+
+**Folder structure**
+```
+VoxelFormer
+├── projects/
+├── tools/
+├── configs/
+├── ckpts/
+│   ├── r101_dcn_fcos3d_pretrain.pth
+│   ├── fcos3d_vovnet_imgbackbone-remapped.pth
+├── mmdetection3d/
+├── data/
+│   ├── nuscenes/
+│   │   ├── maps/
+│   │   ├── samples/
+│   │   ├── sweeps/
+│   │   ├── v1.0-test/
+|   |   ├── v1.0-trainval/
+|   |   ├── voxel_nuscenes_infos_trian.pkl
+|   |   ├── voxel_nuscenes_infos_val.pkl
+|   |   ├── voxel_nuscenes_temporal_infos_trian.pkl
+|   |   ├── voxel_nuscenes_temporal_infos_val.pkl
 ```
