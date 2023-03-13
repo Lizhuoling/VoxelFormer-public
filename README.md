@@ -1,5 +1,7 @@
 # VoxelFormer
 
+This is the official implementation of the paper "VoxelFormer: Bird’s-Eye-View Feature Generation based on Dual-view Attention for Multi-view 3D Object Detection"
+
 ## Install
 
 **a. Create a conda virtual environment and activate it.**
